@@ -152,5 +152,21 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
     */
+    
+    /*
+        Exception: Exception (generic exceptions handler)
+    */
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleGenericException(
+            Exception exception,
+            WebRequest request
+    ) {
+        ErrorBaseResponseBody responseBody = new ErrorBaseResponseBody(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                exception.getMessage()
+        );
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
+    }
 
 }
